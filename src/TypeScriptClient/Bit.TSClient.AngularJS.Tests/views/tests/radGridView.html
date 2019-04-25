@@ -6,25 +6,25 @@
         </toolbar-template>
         <edit-template>
             <dto-form name="dataItemForm" ng-model="dataItem">
-                <input placeholder="..." name="Name" ng-model="dataItem.Name" />
+                <input placeholder="..." name="name" ng-model="dataItem.name" />
             </dto-form>
             <rad-grid-save-button>Save</rad-grid-save-button>
             <rad-grid-cancel-button>Cancel</rad-grid-cancel-button>
         </edit-template>
         <detail-template>
             <div ng-init="vm.onDetailInit(dataItem)">
-                {{::dataItem.Name}}
+                {{::dataItem.name}}
             </div>
         </detail-template>
         <view-template>
             <columns>
-                <column name="Id" title="{{::vm.parentEntityMetadata.Id.Label}}"></column>
-                <column name="Name" title="{{::vm.parentEntityMetadata.Name.Label}}" rad-data-source="vm.parentEntitiesDataSourceForFilter"></column>
-                <column name="Version" title="{{::vm.parentEntityMetadata.Version.Label}}">
-                    {{::dataItem.Version == 1 ? '(-:' : ')-:'}}
+                <column name="id" title="{{::vm.parentEntityMetadata.id.label}}"></column>
+                <column name="name" title="{{::vm.parentEntityMetadata.name.label}}" rad-data-source="vm.parentEntitiesDataSourceForFilter"></column>
+                <column name="version" title="{{::vm.parentEntityMetadata.version.label}}">
+                    {{::dataItem.version == 1 ? '(-:' : ')-:'}}
                 </column>
-                <column name="Date" title="{{::vm.parentEntityMetadata.Date.Label}}">
-                    {{::dataItem.Date | bitDate}}
+                <column name="date" title="{{::vm.parentEntityMetadata.date.label}}">
+                    {{::dataItem.date | bitDate}}
                 </column>
                 <column command title="{{::'Commands' | translate}}">
                     <rad-grid-edit-button>Update</rad-grid-edit-button>
@@ -35,6 +35,6 @@
         </view-template>
     </rad-grid>
 
-    {{vm.parentEntitiesDataSource.current.Name}}
+    {{vm.parentEntitiesDataSource.current.name}}
 
 </view>

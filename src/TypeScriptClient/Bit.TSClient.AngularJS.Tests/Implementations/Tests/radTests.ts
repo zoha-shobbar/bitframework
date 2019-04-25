@@ -15,17 +15,17 @@
 
             const parentEntity = vm.parentEntitiesDataSource.current as Bit.Tests.Model.DomainModels.ParentEntity;
 
-            parentEntity.Name = "!";
+            parentEntity.name = "!";
 
             grid.saveRow();
 
             await uiAutomation.delay();
 
-            if (parentEntity.Id != "999") {
+            if (parentEntity.id != "999") {
                 throw new Error("rad grid add problem");
             }
 
-            if (parentEntity.Name != "!") {
+            if (parentEntity.name != "!") {
                 throw new Error("rad grid add problem");
             }
 
@@ -38,13 +38,13 @@
 
             const uiAutomation = new Bit.Implementations.UIAutomation<ViewModels.RadComboViewModel>(angular.element("#radComboView"));
 
-            uiAutomation.viewModel.testModelsDataSource.current = uiAutomation.viewModel.testModelsDataSource.dataView<Bit.Tests.Model.DomainModels.TestModel>().find(i => i["StringProperty"] == "String2");
+            uiAutomation.viewModel.testModelsDataSource.current = uiAutomation.viewModel.testModelsDataSource.dataView<Bit.Tests.Model.DomainModels.TestModel>().find(i => i["stringProperty"] == "String2");
 
             const vm = uiAutomation.viewModel;
 
             uiAutomation.updateUI();
 
-            if (vm.model.TestModel.Id != "2")
+            if (vm.model.testModel.id != "2")
                 throw new Error("rad combo problem");
 
             if (uiAutomation.view.find("#test2").text() != "2")
@@ -55,7 +55,7 @@
 
             await uiAutomation.viewModel.setCurrent();
 
-            if (vm.model.TestModel.Id as any != "1") // https://github.com/Microsoft/TypeScript/issues/29965
+            if (vm.model.testModel.id as any != "1") // https://github.com/Microsoft/TypeScript/issues/29965
                 throw new Error("rad combo problem");
 
             if (uiAutomation.view.find("#test2").text() != "1")

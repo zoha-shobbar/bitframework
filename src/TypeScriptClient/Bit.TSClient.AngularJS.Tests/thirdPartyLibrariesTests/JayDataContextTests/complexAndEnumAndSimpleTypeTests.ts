@@ -7,27 +7,27 @@
 
     await context.saveChanges();
 
-    expect(complexDto.ComplexObj.Name).toBe("Test?");
+    expect(complexDto.complexObj.name).toBe("Test?");
 
     let complexDtoLoadedFromServer = await context.testComplex.find(1);
 
     context.attach(complexDtoLoadedFromServer, $data.EntityAttachMode.AllChanged);
 
-    complexDtoLoadedFromServer.ComplexObj.Name = "Test";
+    complexDtoLoadedFromServer.complexObj.name = "Test";
 
     await context.saveChanges();
 
-    expect(complexDtoLoadedFromServer.ComplexObj.Name).toBe("Test?");
+    expect(complexDtoLoadedFromServer.complexObj.name).toBe("Test?");
 
     complexDtoLoadedFromServer = await context.testComplex.doSomeThingWithComplexObj(complexDtoLoadedFromServer);
 
-    expect(complexDtoLoadedFromServer.ComplexObj.Name).toBe("Test??");
+    expect(complexDtoLoadedFromServer.complexObj.name).toBe("Test??");
 
-    expect((await context.testComplex.getComplexObjects().first()).Name).toBe("Test");
+    expect((await context.testComplex.getComplexObjects().first()).name).toBe("Test");
 
     const testDtoWithNullComplex = (await context.testComplex.getObjectsWithNullCompexTypes().toArray())[0];
 
-    expect(testDtoWithNullComplex.ComplexObj.Name).toBeNull(); // This covers #146 but not #52. It needs more work.
+    expect(testDtoWithNullComplex.complexObj.name).toBeNull(); // This covers #146 but not #52. It needs more work.
 };
 
 let testComplexTypeWithOfflineDb = async (): Promise<void> => {
@@ -45,7 +45,7 @@ let testComplexTypeWithOfflineDb = async (): Promise<void> => {
 
     updateContext.attach(complexDto, $data.EntityAttachMode.AllChanged);
 
-    complexDto.ComplexObj.Name = "Test2";
+    complexDto.complexObj.name = "Test2";
 
     await updateContext.saveChanges();
 
@@ -53,7 +53,7 @@ let testComplexTypeWithOfflineDb = async (): Promise<void> => {
 
     complexDto = await readContext.testComplex.find(1);
 
-    expect(complexDto.ComplexObj.Name).toBe("Test2");
+    expect(complexDto.complexObj.name).toBe("Test2");
 };
 
 let simpleArrayValuesTest = async (): Promise<void> => {
@@ -73,11 +73,11 @@ let enumTest = async (): Promise<void> => {
 
     const dtoWithEnum = await context.dtoWithEnum.getDtoWithEnumsByGender(Bit.Tests.Model.Dto.TestGender.Man).first();
 
-    expect(dtoWithEnum.Gender).toBe(Bit.Tests.Model.Dto.TestGender.Man);
+    expect(dtoWithEnum.gender).toBe(Bit.Tests.Model.Dto.TestGender.Man);
 
     const dtoWithEnum2 = await context.dtoWithEnum.getDtoWithEnumsByGender2(Bit.Tests.Model.Dto.TestGender2.Man).first();
 
-    expect(dtoWithEnum2.Test).toBe("Man");
+    expect(dtoWithEnum2.test).toBe("Man");
 
     expect((await context.dtoWithEnum.postDtoWithEnum(dtoWithEnum))).toBe(true);
 

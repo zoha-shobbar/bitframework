@@ -5,6 +5,7 @@
 <#@ import namespace="System.Linq" #>
 <#@ parameter type="System.Collections.Generic.IList<Dto>" name="Dtos" #>
 <#@ parameter type="System.Collections.Generic.IList<EnumType>" name="EnumTypes" #>
+<#@ parameter type="System.Boolean" name="UseCamelCase" #>
 <# foreach (Dto dto in Dtos)
 {#>
 
@@ -18,7 +19,7 @@
 <#= dto.DtoSymbol.ToDisplayString() #> = <#= dto.BaseDtoSymbol != null ? dto.BaseDtoSymbol.GetTypescriptTypeName(useArrayForIEnumerableTypes : true) : "$data.Entity" #>.extend("<#= dto.DtoSymbol.ToDisplayString() #>", {
 	<# foreach (IPropertySymbol prp in dto.Properties)
 	{ #> 
-		<#= prp.Name #>: {
+		<#= (UseCamelCase ? prp.Name.AsCamelCase() : prp.Name) #>: {
 			"type": "<#= prp.Type.GetEdmTypeName(useArrayForIEnumerableTypes:true) #>" , nullable: <#= prp.Type.IsNullable().ToString().ToLowerInvariant() #>
 			<# if (!prp.IsKey() && (prp.Type.IsCollectionType() || prp.Type.IsNullable()))
 								{
@@ -30,7 +31,7 @@
 			<# } #>
 			<# if (prp.IsAssociationProperty())
 			{
-				#> , "inverseProperty": "<#= prp.GetInversePropertyName() #>"
+				#> , "inverseProperty": "<#= (UseCamelCase ? prp.GetInversePropertyName().AsCamelCase() : prp.GetInversePropertyName()) #>"
 			<# } #>
 			<# if (prp.IsKey()) { #>
 			, "key": true

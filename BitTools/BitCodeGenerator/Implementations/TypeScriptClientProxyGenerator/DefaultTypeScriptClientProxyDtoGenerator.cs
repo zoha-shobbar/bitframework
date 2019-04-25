@@ -23,6 +23,7 @@ namespace BitCodeGenerator.Implementations.TypeScriptClientProxyGenerator
                     { "Dtos", dtos },
                     { "EnumTypes" , enumTypes },
                     { "TypingsPath" , typingsPath },
+                    { "UseCamelCase", true }
                 }
             };
 
@@ -41,7 +42,8 @@ namespace BitCodeGenerator.Implementations.TypeScriptClientProxyGenerator
                 Session = new Dictionary<string, object>
                 {
                     { "Dtos", dtos },
-                    { "EnumTypes" , enumTypes }
+                    { "EnumTypes" , enumTypes },
+                    { "UseCamelCase", true }
                 }
             };
 

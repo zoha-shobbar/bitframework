@@ -47,12 +47,12 @@ let testPassingArrayOfEntitiesToController = async (): Promise<void> => {
 
     let result = await context.validationSamples.submitValidations(validations, null).first();
 
-    if (result.Id != "2" || result.RequiredByAttributeMember != "AA" || result.RequiredByMetadataMember != "BB")
+    if (result.id != "2" || result.requiredByAttributeMember != "AA" || result.requiredByMetadataMember != "BB")
         throw new Error("IEEE754Compatibility problem");
 
     result = await context.validationSamples.submitValidations(validations, "A").first();
 
-    if (result.Id != "2" || result.RequiredByAttributeMember != "AAA" || result.RequiredByMetadataMember != "BBA")
+    if (result.id != "2" || result.requiredByAttributeMember != "AAA" || result.requiredByMetadataMember != "BBA")
         throw new Error("IEEE754Compatibility problem");
 }
 

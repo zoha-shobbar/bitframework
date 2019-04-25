@@ -18,7 +18,7 @@
 
                 const tmFromView = uiAutomation.getBindingContext<Bit.Tests.Model.DomainModels.TestModel>(uiAutomation.view.find(`#testModel${i}`), "tm");
 
-                if (tmFromView.Id != tm.Id)
+                if (tmFromView.id != tm.id)
                     throw new Error("problem in testGetBindingContextAndGetViewModel");
 
             });

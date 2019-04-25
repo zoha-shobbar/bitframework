@@ -4,8 +4,8 @@
     export class ValidationSampleRules extends Bit.Implementations.DtoRules<Tests.Model.Dto.ValidationSampleDto>{
 
         public validateMember(memberName: keyof Tests.Model.Dto.ValidationSampleDto, newValue: any, oldValue: any): void {
-            if (memberName == "RequiredByDtoRulesMember") {
-                this.setMemberValidity("RequiredByDtoRulesMember", "required", newValue != null);
+            if (memberName == "requiredByDtoRulesMember") {
+                this.setMemberValidity("requiredByDtoRulesMember", "required", newValue != null);
             }
             super.validateMember(memberName, newValue, oldValue);
         }

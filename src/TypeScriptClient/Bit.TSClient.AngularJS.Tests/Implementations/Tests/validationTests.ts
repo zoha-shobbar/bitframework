@@ -4,13 +4,13 @@
 
             const uiAutomation = new Bit.Implementations.UIAutomation<ViewModels.FormValidationViewModel>(angular.element("#formValidationView"));
 
-            uiAutomation.viewModel.model.RequiredByAttributeMember = "value1";
+            uiAutomation.viewModel.model.requiredByAttributeMember = "value1";
 
-            uiAutomation.viewModel.model.RequiredByMetadataMember = "value2";
+            uiAutomation.viewModel.model.requiredByMetadataMember = "value2";
 
-            uiAutomation.viewModel.model.NotRequiredMember = "value3";
+            uiAutomation.viewModel.model.notRequiredMember = "value3";
 
-            uiAutomation.viewModel.model.RequiredByDtoRulesMember = "value4";
+            uiAutomation.viewModel.model.requiredByDtoRulesMember = "value4";
 
             const form = uiAutomation.getForm(angular.element("[name='validationSampleDtoForm']"));
 

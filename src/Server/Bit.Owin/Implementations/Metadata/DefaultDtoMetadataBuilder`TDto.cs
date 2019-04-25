@@ -27,6 +27,11 @@ namespace Bit.Owin.Implementations.Metadata
             return this;
         }
 
+        string AsCamelCase(string str)
+        {
+            return char.ToLowerInvariant(str[0]) + str.Substring(1);
+        }
+
         public virtual IDtoMetadataBuilder<TDto> AddLookup<TLookupDto>(string memberName, string dataValueField, string dataTextField, Expression<Func<TLookupDto, bool>> baseFilter = null, string lookupName = null)
             where TLookupDto : class
         {
@@ -44,9 +49,9 @@ namespace Bit.Owin.Implementations.Metadata
 
             DtoMemberLookup lookup = new DtoMemberLookup
             {
-                DtoMemberName = memberName,
-                DataTextField = dataTextField,
-                DataValueField = dataValueField,
+                DtoMemberName = AsCamelCase(memberName),
+                DataTextField = AsCamelCase(dataTextField),
+                DataValueField = AsCamelCase(dataValueField),
                 LookupDtoType = typeof(TLookupDto).GetTypeInfo().FullName
             };
 
@@ -60,7 +65,7 @@ namespace Bit.Owin.Implementations.Metadata
             return this;
         }
 
-        protected virtual JavascriptCompilationOptions JavascriptCompilationOptions => new JavascriptCompilationOptions(JsCompilationFlags.BodyOnly, scriptVersion: ScriptVersion.Es70, extensions: new JavascriptConversionExtension[] { new LinqMethods(), new StaticStringMethods(), new StaticMathMethods(), new EnumConversionExtension(EnumOptions.UseStrings) });
+        protected virtual JavascriptCompilationOptions JavascriptCompilationOptions => new JavascriptCompilationOptions(JsCompilationFlags.BodyOnly, scriptVersion: ScriptVersion.Es70, extensions: new JavascriptConversionExtension[] { new LinqMethods(), new StaticStringMethods(), new StaticMathMethods(), new EnumConversionExtension(EnumOptions.UseStrings) }) {  };
 
         protected virtual string BuildLookupJsFilterFromLambdaExpression<TLookupDto>(Expression<Func<TLookupDto, bool>> baseFilter, DtoMemberLookup lookup)
             where TLookupDto : class
@@ -93,7 +98,7 @@ namespace Bit.Owin.Implementations.Metadata
             if (_dtoMetadata == null)
                 throw new InvalidOperationException($"{nameof(AddDtoMetadata)} must be called first");
 
-            metadata.DtoMemberName = member.Name;
+            metadata.DtoMemberName = AsCamelCase(member.Name);
 
             if (metadata.IsRequired == false)
                 metadata.IsRequired = member.GetCustomAttribute<RequiredAttribute>() != null;

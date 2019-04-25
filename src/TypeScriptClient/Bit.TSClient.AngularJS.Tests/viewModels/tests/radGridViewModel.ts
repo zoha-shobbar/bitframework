@@ -20,14 +20,14 @@
         @Command()
         public doSomethingWithCurrentEntity() {
             const parentEntity = this.parentEntitiesDataSource.current as Tests.Model.DomainModels.ParentEntity;
-            parentEntity.Name += "?";
-            this.$document.attr("title", parentEntity.Name);
+            parentEntity.name += "?";
+            this.$document.attr("title", parentEntity.name);
         }
 
         @Command()
         public onDetailInit(data: Tests.Model.DomainModels.ParentEntity): void {
 
-            console.warn(data.Id);
+            console.warn(data.id);
 
         }
 

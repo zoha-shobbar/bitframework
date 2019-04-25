@@ -13,7 +13,7 @@
         public async $onInit(): Promise<void> {
             const context = await this.entityContextProvider.getContext<TestContext>("Test");
             this.testModelsDataSource = context.testModels.getTestModelsByStringPropertyValue("1").asKendoDataSource();
-            this.model = await context.parentEntities.getTestData().map(p => { return { Id: p.Id, TestModel: { Id: p.TestModel.Id } } }).single();
+            this.model = await context.parentEntities.getTestData().map(p => { return { id: p.id, testModel: { id: p.testModel.id } } }).single();
         }
 
         @Command()

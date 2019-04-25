@@ -12,6 +12,6 @@
 
     expect(newInheritedDtoInstance instanceof Bit.Tests.Model.Dto.SampleBaseDto).toBeTruthy();
     expect(newInheritedDtoInstance instanceof Bit.Tests.Model.Dto.SampleInheritedDto).toBeTruthy();
-    expect(newInheritedDtoInstance.LastName).toBe("1");
-    expect(newInheritedDtoInstance.Name).toBe("1");
+    expect(newInheritedDtoInstance.lastName).toBe("1");
+    expect(newInheritedDtoInstance.name).toBe("1");
 }

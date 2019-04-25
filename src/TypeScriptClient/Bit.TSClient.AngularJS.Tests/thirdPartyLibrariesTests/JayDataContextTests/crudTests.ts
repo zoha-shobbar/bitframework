@@ -4,7 +4,7 @@
     const model = context.testModels.add({ StringProperty: "Test", DateProperty: new Date() });
     await context.saveChanges();
 
-    if (model.Id == "0") {
+    if (model.id == "0") {
         throw new Error("Id may not be zero");
     };
 };
@@ -12,7 +12,7 @@
 let testGetAllAndFilter = async (): Promise<void> => {
     const contextProvider = Bit.DependencyManager.getCurrent().resolveObject<Bit.Contracts.IEntityContextProvider>("EntityContextProvider");
     const context = await contextProvider.getContext<TestContext>("Test");
-    const parentEntities = await context.parentEntities.filter(pe => pe.Name == "A")
+    const parentEntities = await context.parentEntities.filter(pe => pe.name == "A")
         .toArray();
     if (parentEntities.length != 1) {
         throw new Error("parent entities are not loaded correctly");
@@ -62,7 +62,7 @@ const testSync = async (): Promise<void> => {
 
     offlineContext.attach(e);
 
-    e.Name += "?";
+    e.name += "?";
 
     await offlineContext.saveChanges();
 

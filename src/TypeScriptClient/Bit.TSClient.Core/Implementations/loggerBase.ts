@@ -45,13 +45,13 @@
         private lastLoggedError: string = null;
 
         protected ignoreLog(logInfo: Model.Dtos.ClientLogDto): boolean {
-            if (logInfo.ErrorName == "HTTP request failed" /*This type of error is handled at server side*/) {
+            if (logInfo.errorName == "HTTP request failed" /*This type of error is handled at server side*/) {
                 return true;
             }
-            if (logInfo.Error == this.lastLoggedError) {
+            if (logInfo.error == this.lastLoggedError) {
                 return true;
             }
-            this.lastLoggedError = logInfo.Error;
+            this.lastLoggedError = logInfo.error;
             return false;
         }
 
@@ -99,7 +99,7 @@
 
             const logInfo = this.createLogInfo(message, additionalInfo, err);
 
-            logInfo.LogLevel = "Warning";
+            logInfo.logLevel = "Warning";
 
             if (this.clientAppProfile.isDebugMode == true) {
                 console.warn(logInfo);
@@ -112,7 +112,7 @@
 
             const logInfo = this.createLogInfo(message, additionalInfo, err);
 
-            logInfo.LogLevel = "Error";
+            logInfo.logLevel = "Error";
 
             if (this.clientAppProfile.isDebugMode == true) {
                 console.error(logInfo);
@@ -125,7 +125,7 @@
 
             const logInfo = this.createLogInfo(message, additionalInfo, err);
 
-            logInfo.LogLevel = "Fatal";
+            logInfo.logLevel = "Fatal";
 
             if (this.clientAppProfile.isDebugMode == true) {
                 console.error(logInfo);

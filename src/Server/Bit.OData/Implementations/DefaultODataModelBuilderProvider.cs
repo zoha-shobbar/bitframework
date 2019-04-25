@@ -12,7 +12,7 @@ namespace Bit.OData.Implementations
             {
                 ContainerName = containerName,
                 Namespace = @namespace
-            };
+            }.EnableLowerCamelCase();
         }
     }
 }

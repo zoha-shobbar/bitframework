@@ -4,9 +4,9 @@
         name: "LookupsSearchViewModel", template: `
 
 <dto-form ng-model="vm.product">
-    <rad-combo-box rad-data-source="vm.countriesDataSource" lookup-search="true" ng-model="vm.product.BuildLocationId" />
+    <rad-combo-box rad-data-source="vm.countriesDataSource" lookup-search="true" ng-model="vm.product.buildLocationId" />
     <br />
-    {{vm.product.BuildLocationId}}
+    {{vm.product.buildLocationId}}
     {{vm.countriesDataSource.current.Name}}
 </dto-form>
 
@@ -34,8 +34,8 @@
  <rad-grid rad-data-source="vm.filterDataSource">
     <view-template>
         <columns>
-            <column name="Id" title="Id"></column>
-            <column name="Name" title="Name"></column>
+            <column name="id" title="id"></column>
+            <column name="name" title="name"></column>
         </columns>
     </view-template>
 </rad-grid>
